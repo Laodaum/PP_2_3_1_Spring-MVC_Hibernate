@@ -11,8 +11,13 @@ import java.util.List;
 @Component
 public class UserServiceImp implements UserService {
 
-   @Autowired
+
    private UserDao userDao;
+
+   @Autowired
+   public UserServiceImp(UserDao userDao) {
+      this.userDao = userDao;
+   }
 
    @Transactional
    @Override
@@ -38,12 +43,8 @@ public class UserServiceImp implements UserService {
    }
    @Transactional
    @Override
-   public void update(Long id, User changedUser) {
-      User user = userDao.findUser(id);
-      user.setFirstName( changedUser.getFirstName() );
-      user.setLastName( changedUser.getLastName() );
-      user.setEmail( changedUser.getEmail() );
-      userDao.update(user);
+   public void update(User changedUser) {
+      userDao.update(changedUser);
    }
 
 

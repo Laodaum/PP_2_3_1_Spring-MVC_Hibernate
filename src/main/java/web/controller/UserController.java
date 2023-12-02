@@ -9,7 +9,7 @@ import web.service.UserService;
 
 @Controller
 public class UserController {
-    @Autowired
+
     private UserService userService;
 
     @Autowired
@@ -43,8 +43,8 @@ public class UserController {
         return "/users/changeForm";
     }
     @PostMapping("/users/change")
-    public String update(@RequestParam(name = "id") Long id, @ModelAttribute("user") User changedUser) {
-        userService.update(id, changedUser);
+    public String update( @ModelAttribute("user") User changedUser) {
+        userService.update(changedUser);
         return "redirect:/";
     }
 
